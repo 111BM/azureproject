@@ -322,7 +322,7 @@
 		],
 		"concurrency": 1,
 		"parameters": {
-			"Looo_input": {
+			"Loop_input": {
 				"type": "array",
 				"defaultValue": [
 					{
