@@ -291,7 +291,7 @@
 												"parameters": {
 													"container": "bronze",
 													"folder": {
-														"value": "@{item().table}_cdc",
+														"value": "@{pipeline().parameters.Loop_input}_cdc",
 														"type": "Expression"
 													},
 													"file": "empty.json"
@@ -352,7 +352,7 @@
 					{
 						"schema": "dbo",
 						"table": "DimFactStream",
-						"cdc_col": "updated_at",
+						"cdc_col": "stream_timestamp",
 						"from_date": ""
 					}
 				]
