@@ -43,7 +43,7 @@
 								"source": {
 									"type": "AzureSqlSource",
 									"sqlReaderQuery": {
-										"value": "select * from @{item().schema}.@{item().table} where @{item().cdc_col} > '@{if(empty(item().from_date),activity('last_cdc').output.value[0].cdc,item().from_date)}'\n\n",
+										"value": "select *from @{item().schema}.@{item().table} where @{item().cdc_col} > '@{if(empty(item().from_date),activity('last_cdc').output.value[0].cdc,item().from_date)}'\n\n",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
@@ -189,7 +189,7 @@
 														"type": "Expression"
 													},
 													"file": {
-														"value": "@concat(item().table,'_',variables('current'))",
+														"value": "@concat(item(),'_',variables('current'))",
 														"type": "Expression"
 													}
 												}
@@ -259,7 +259,7 @@
 													{
 														"name": "cdc",
 														"value": {
-															"value": "@activity('max_cdc').output.resultSets[0].rows[0].cdc",
+															"value": "@activity('max_cdc').output.resultSets[0].rows[0].cdc\n",
 															"type": "Expression"
 														}
 													}
@@ -291,17 +291,25 @@
 												"parameters": {
 													"container": "bronze",
 													"folder": {
-														"value": "@{item().table}_cdc",
+														"value": "@concat(item().table, '_cdc')\n",
 														"type": "Expression"
 													},
-													"file": "cdc.json"
+													"file": "empty.json"
 												}
 											}
 										],
 										"outputs": [
 											{
 												"referenceName": "DS_jsondynamic",
-												"type": "DatasetReference"
+												"type": "DatasetReference",
+												"parameters": {
+													"container": "bronze",
+													"folder": {
+														"value": "@concat(item().table, '_cdc')",
+														"type": "Expression"
+													},
+													"file": "cdc.json"
+												}
 											}
 										]
 									}
@@ -312,14 +320,13 @@
 				}
 			},
 			{
-				"name": "Alerts",
+				"name": "Web1",
 				"type": "WebActivity",
 				"dependsOn": [
 					{
 						"activity": "ForEach1",
 						"dependencyConditions": [
-							"Succeeded",
-							"Failed"
+							"Succeeded"
 						]
 					}
 				],
@@ -335,8 +342,8 @@
 					"method": "POST",
 					"url": "https://prod-19.australiaeast.logic.azure.com:443/workflows/aaa899876fc846a8b0409698ec3ff1d7/triggers/When_an_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_an_HTTP_request_is_received%2Frun&sv=1.0&sig=N1LG_gD_PiMOPYelOaU_Krz2-sXjc-orW4dRx2FbEV8",
 					"body": {
-						"value": "{\n    \"pipeline_name\" : \"@{pipeline().Pipeline}\",\n    \"pipeline_runId\" : \"@{pipeline().RunId}\"\n}",
-						"type": "Expression"
+						"pipeline_name": "@{pipeline().Pipeline}",
+						"pipeline_runId": "@{pipeline().RunId}"
 					}
 				}
 			}
