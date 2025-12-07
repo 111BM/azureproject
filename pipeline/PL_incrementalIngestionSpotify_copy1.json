@@ -286,7 +286,7 @@
 												"parameters": {
 													"container": "bronze",
 													"folder": {
-														"value": "@concat(pipeline().parameters.table, '_cdc')\n",
+														"value": "@concat(item().table, '_cdc')\n",
 														"type": "Expression"
 													},
 													"file": "empty.json"
