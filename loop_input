@@ -25,7 +25,7 @@
   },
 {
     "schema" : "dbo",
-    "table" : "DimFactStream",
+    "table" : "FactStream",
     "cdc_col" : "stream_timestamp",
     "from_date" : ""
   }
