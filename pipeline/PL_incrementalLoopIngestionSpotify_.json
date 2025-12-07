@@ -287,7 +287,15 @@
 										"inputs": [
 											{
 												"referenceName": "DS_jsondynamic",
-												"type": "DatasetReference"
+												"type": "DatasetReference",
+												"parameters": {
+													"container": "bronze",
+													"folder": {
+														"value": "@{item().table}_cdc",
+														"type": "Expression"
+													},
+													"file": "cdc.json"
+												}
 											}
 										],
 										"outputs": [
