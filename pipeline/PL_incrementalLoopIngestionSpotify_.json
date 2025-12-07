@@ -259,7 +259,7 @@
 													{
 														"name": "cdc",
 														"value": {
-															"value": "@activity('max_cdc').output.resultSets[0].rows[0].cdc\n",
+															"value": "@activity('max_cdc').output.resultSets[0].rows[0].cdc",
 															"type": "Expression"
 														}
 													}
@@ -287,29 +287,13 @@
 										"inputs": [
 											{
 												"referenceName": "DS_jsondynamic",
-												"type": "DatasetReference",
-												"parameters": {
-													"container": "bronze",
-													"folder": {
-														"value": "@{item().table}_cdc",
-														"type": "Expression"
-													},
-													"file": "empty.json"
-												}
+												"type": "DatasetReference"
 											}
 										],
 										"outputs": [
 											{
 												"referenceName": "DS_jsondynamic",
-												"type": "DatasetReference",
-												"parameters": {
-													"container": "bronze",
-													"folder": {
-														"value": "@{item().table}_cdc\n",
-														"type": "Expression"
-													},
-													"file": "cdc.json"
-												}
+												"type": "DatasetReference"
 											}
 										]
 									}
