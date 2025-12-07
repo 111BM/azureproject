@@ -162,7 +162,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@greater(activity('AzureSqltoDatalake').output.dataRead,0)",
+									"value": "@greater(activity('AzureSqltoDatalake').output.rowsCopied, 0)",
 									"type": "Expression"
 								},
 								"ifFalseActivities": [
@@ -320,7 +320,7 @@
 				}
 			},
 			{
-				"name": "Web1",
+				"name": "Alerts",
 				"type": "WebActivity",
 				"dependsOn": [
 					{
