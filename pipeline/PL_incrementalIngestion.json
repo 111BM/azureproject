@@ -1,5 +1,5 @@
 {
-	"name": "PL_incrementalIngestionSpotify",
+	"name": "PL_incrementalIngestion",
 	"properties": {
 		"activities": [
 			{
