@@ -1,0 +1,12 @@
+{
+	"name": "DS_tablemetadata",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_productsasqldb",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}
