@@ -1,0 +1,32 @@
+{
+	"name": "DS_productssource",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_productsasqldb",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Pid",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Pname",
+				"type": "varchar"
+			},
+			{
+				"name": "lastmodifytime",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "ProductSource"
+		}
+	}
+}
